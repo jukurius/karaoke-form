@@ -1,0 +1,40 @@
+.form_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.form_title {
+  color: #4c4c4c;
+  font-weight: 400;
+}
+
+.form_group_column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.form_checkbox {
+  color: #4c4c4c;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #5a494a;
+  border-color: #007bff;
+}
+
+.form_submit_button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #128559;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
