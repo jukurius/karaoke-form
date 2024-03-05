@@ -43,7 +43,7 @@
 }
 
 .button_group > button:not(.active):hover {
-  background-color: #cccccc;
+  background-color: #e0e0e0b4;
   border: 2px solid var(--color-secondary-border);
 }
 
