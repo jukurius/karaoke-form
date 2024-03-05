@@ -1,3 +1,5 @@
+@import "../variables.css";
+
 .input_wrapper {
   display: flex;
   flex-direction: column;
@@ -5,11 +7,14 @@
 
 .input_container {
   position: relative;
+  padding: 16px 10px;
+  border: 1px dashed var(--color-primary-border);
+  border-radius: 5px;
 }
 
 .input_label {
   margin-bottom: 8px;
-  color: #4c4c4c;
+  color: var(--color-primary-font);
 }
 
 .input {
@@ -27,29 +32,23 @@
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  color: #4c4c4c;
-  border: 1px dashed #9b9b9b;
-  border-radius: 5px;
-  padding: 16px 10px;
+  color: var(--color-primary-font);
 }
 
 .image_preview button {
   all: unset;
-  background-image: url("../images/cross-icon.svg");
+  background-image: url("../../images/cross-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   width: 24px;
   height: 12px;
-  margin-right: 10px;
   cursor: pointer;
 }
 
 .button {
-  padding: 16px 10px;
   background-color: #ffffff;
-  color: #4c4c4c;
-  border: 1px dashed #9b9b9b;
-  border-radius: 5px;
+  color: var(--color-primary-font);
+  border: none;
   cursor: pointer;
   width: 100%;
 }

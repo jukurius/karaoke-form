@@ -1,4 +1,5 @@
-import styles from "../assets/styles/form-button-group.module.css";
+import { useState } from "react";
+import styles from "../assets/styles/components/form-button-group.module.css";
 
 interface ButtonGroupProps {
   buttons: string[];
@@ -11,6 +12,12 @@ const FormButtonGroup = ({
   label,
   onButtonClick,
 }: ButtonGroupProps) => {
+  const [activeButtonIndex, setActiveButtonIndex] = useState(-2);
+  const handleButtonClick = (index: number) => {
+    setActiveButtonIndex(index);
+    onButtonClick(buttons[index]);
+  };
+
   return (
     <div className={styles.button_wrapper}>
       {label && <label className={styles.button_label}>{label}</label>}
@@ -18,9 +25,9 @@ const FormButtonGroup = ({
         {buttons.map((button, index) => (
           <button
             key={index}
-            onClick={() => onButtonClick(button)}
-            className={`${styles.button} ${index === 0 ? "first" : ""} ${
-              index === buttons.length - 1 ? "last" : ""
+            onClick={() => handleButtonClick(index)}
+            className={`${styles.button} ${
+              index === activeButtonIndex ? styles.active : ""
             }`}
           >
             {button}

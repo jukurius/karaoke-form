@@ -1,5 +1,5 @@
 import { useRef, ChangeEvent } from "react";
-import styles from "../assets/styles/form-image-input.module.css";
+import styles from "../assets/styles/components/form-image-input.module.css";
 
 interface ImageInputProps {
   label: string;

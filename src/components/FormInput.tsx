@@ -1,5 +1,5 @@
 import { ChangeEvent, InputHTMLAttributes } from "react";
-import styles from "../assets/styles/form-input.module.css";
+import styles from "../assets/styles/components/form-input.module.css";
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;

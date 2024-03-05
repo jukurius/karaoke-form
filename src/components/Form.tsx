@@ -1,9 +1,12 @@
 import { useState } from "react";
-import styles from "../assets/styles/form.module.css";
+import styles from "../assets/styles/components/form.module.css";
 import FormInput from "./FormInput";
 import FormDropdown from "./FormDrowdown";
 import FormImageInput from "./FormImageInput";
 import FormButtonGroup from "./FormButtonGroup";
+import FormValidation from "../utils/FormValidation";
+import { songs } from "../data/Songs";
+import { songKeys } from "../data/SongKeys";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +16,9 @@ const Form = () => {
     songKey: "",
     isChecked: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
+  // Handle input change
   const handleChange = (
     event:
       | React.ChangeEvent<HTMLInputElement>
@@ -26,6 +31,7 @@ const Form = () => {
     }));
   };
 
+  // Handle dropdown change
   const handleSelect = (value: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -33,8 +39,8 @@ const Form = () => {
     }));
   };
 
+  // Handle image change
   const handleImageChange = (file: File | null) => {
-    console.log("täällä käyty");
     if (file) {
       setFormData((prev) => ({ ...prev, image: file.name }));
     } else {
@@ -42,26 +48,27 @@ const Form = () => {
     }
   };
 
+  // Handle button group click
   const handleButtonGroupClick = (buttonName: string) => {
-    console.log("Clicked button:", buttonName);
     setFormData((prev) => ({
       ...prev,
       songKey: buttonName,
     }));
   };
 
+  // Handle form submit
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formData);
+    if ((event.nativeEvent as any).submitter?.name === "submitButton") {
+      if (FormValidation({ formData })) {
+        console.log("Form is valid");
+        console.log(formData);
+        setIsLoading(true);
+      } else {
+        console.log("Form is invalid");
+      }
+    }
   };
-
-  const dropdownOptions = [
-    { value: "1", label: "Kirka - Hetki lyö" },
-    { value: "2", label: "Kari Tapio - Juna kulkee" },
-    { value: "3", label: "Anna Puu - Säännöt rakkaudelle" },
-  ];
-
-  const buttons = ["-2", "-1", "0", "+1", "+2"];
 
   return (
     <form onSubmit={(e) => handleSubmit(e)} className={styles.form_wrapper}>
@@ -84,12 +91,12 @@ const Form = () => {
         <FormDropdown
           label="Biisi*"
           initialOption="Valitse alta"
-          options={dropdownOptions}
+          options={songs}
           onChange={handleSelect}
         />
         <FormButtonGroup
           label="Sävellaji*"
-          buttons={buttons}
+          buttons={songKeys}
           onButtonClick={handleButtonGroupClick}
         />
         <label className={styles.form_checkbox}>
@@ -103,9 +110,19 @@ const Form = () => {
           Sallin tietojeni tallennuksen karaokejärjestelmään
         </label>
       </div>
-      <button type="submit" className={styles.form_submit_button}>
-        Ilmoittaudu
-      </button>
+      <div>
+        <button
+          type="submit"
+          name="submitButton"
+          disabled={FormValidation({ formData }) ? false : true}
+          className={`${styles.form_submit_button} ${
+            isLoading ? styles.isLoading : ""
+          }`}
+        >
+          <span className={styles.submit_spinner}></span>
+          {isLoading ? "Lähetetään..." : "Ilmoittaudu"}
+        </button>
+      </div>
     </form>
   );
 };

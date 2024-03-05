@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from "react";
-import styles from "../assets/styles/form-dropdown.module.css";
+import styles from "../assets/styles/components/form-dropdown.module.css";
 
 interface DropdownProps {
   options: { label: string; value: string }[];

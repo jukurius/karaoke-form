@@ -1,0 +1,72 @@
+@import "../variables.css";
+
+.button_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.button_group {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.button_label {
+  margin-bottom: 8px;
+  color: var(--color-primary-font);
+}
+
+.button_group > button {
+  flex: 1;
+  border: none;
+  padding: 16px 10px;
+  background-color: #ffffff;
+  color: var(--color-font);
+  cursor: pointer;
+  border: 2px solid var(--color-secondary-border);
+  transition: background-color 0.2s ease-in;
+}
+
+.button_group > button:first-child {
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+.button_group > button:last-child {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.button_group > button:not(:last-child) {
+  margin-right: -1px;
+}
+
+.button_group > button:not(.active):hover {
+  background-color: #cccccc;
+  border: 2px solid var(--color-secondary-border);
+}
+
+.button_group > button:focus {
+  outline: none;
+  background-color: var(--color-primary-highlight);
+  color: var(--color-secondary-font);
+  border-top-color: var(--color-primary-highlight);
+  border-bottom-color: var(--color-primary-highlight);
+}
+
+.button_group > button:first-child.active {
+  border-left-color: var(--color-primary-highlight);
+}
+
+.button_group > .active {
+  outline: none;
+  background-color: var(--color-primary-highlight);
+  color: var(--color-secondary-font);
+  border-top-color: var(--color-primary-highlight);
+  border-bottom-color: var(--color-primary-highlight);
+}
+
+.button_group > button:last-child.active {
+  border-right-color: var(--color-primary-highlight);
+}
